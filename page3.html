@@ -17,17 +17,48 @@
             font-size: 18px;
             cursor: pointer;
         }
-        a {
-            text-decoration: none;
-            color:black;
+        #media-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;   
+            height: 100vh;
+            background-color: black;
+            z-index: 9999;
+        }
+        #scare-video {
+            width: 100%;
+            height: 100%;
+            object-fit:contain;
         }
     </style>
 </head>
 <body>
 
-    <button id="trigger-btn">
-        <a href="page2.html">Đồng ý đi thầy</a>
-    </button>
+    <button id="trigger-btn">Đồng ý đi thầy</button>
+
+    <div id="media-container">
+        <video id="scare-video" src="video/wibi.mp4" preload="auto"></video>
+    </div>
+
+    <!-- stupid -->
+    <script>
+        const btn = document.getElementById('trigger-btn');
+        const container = document.getElementById('media-container');
+        const video = document.getElementById('scare-video');
+        btn.addEventListener('click', () => {
+            container.style.display = 'block';
+            if (container.requestFullscreen) {
+                container.requestFullscreen();
+            } else if (container.webkitRequestFullscreen) { /* Safari */
+                container.webkitRequestFullscreen();
+            } else if (container.msRequestFullscreen) { /* IE11 */
+                container.msRequestFullscreen();
+            }
+            video.play();
+        });
+    </script>
 
 </body>
 </html>
