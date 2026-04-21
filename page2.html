@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>stupid</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        #media-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;   
+            height: 100vh;
+            background-color: black;
+            z-index: 9999;
+        }
+        #scare-video {
+            width: 100%;
+            height: 100%;
+            object-fit:contain;
+        }
+    </style>
+</head>
+<body>
+
+    <button id="trigger-btn">Đồng ý đi thầy</button>
+
+    <div id="media-container">
+        <video id="scare-video" src="video/porn.mp4" preload="auto"></video>
+    </div>
+
+    <!-- stupid -->
+    <script>
+        const btn = document.getElementById('trigger-btn');
+        const container = document.getElementById('media-container');
+        const video = document.getElementById('scare-video');
+        btn.addEventListener('click', () => {
+            container.style.display = 'block';
+            if (container.requestFullscreen) {
+                container.requestFullscreen();
+            } else if (container.webkitRequestFullscreen) { /* Safari */
+                container.webkitRequestFullscreen();
+            } else if (container.msRequestFullscreen) { /* IE11 */
+                container.msRequestFullscreen();
+            }
+            video.play();
+        });
+    </script>
+
+</body>
+</html>
